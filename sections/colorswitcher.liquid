@@ -1,0 +1,44 @@
+<div style="display: none;">
+  {% render 'product-variant-picker' %}
+</div>
+{% schema %}
+  {
+    "name": "Colour Swatches",
+    "settings": [],
+    "blocks":[
+      {
+        "name":"Swatch",
+        "type":"swatch",
+        "settings":[
+          {
+            "type":"text",
+            "id":"title",
+            "label":"Name"
+          },
+          {
+            "type":"color",
+            "id":"color",
+            "label":"Colour"
+          },
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
+          }
+        ]
+      }
+    ],
+   "presets": [
+{
+"name": "Welcome section Test",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

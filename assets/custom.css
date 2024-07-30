@@ -1,0 +1,56 @@
+.field:after,
+.select:after,
+.customer .field:after,
+.customer select:after {
+  box-shadow: unset !important;
+}
+fieldset.js.product-form__input.product-form__input--pill.Color {
+    display: none;
+}
+
+.footer__column.footer__localization.isolate {
+  display: none;
+}
+.button:after,
+.shopify-challenge__button:after,
+.customer button:after,
+.shopify-payment-button__button--unbranded:after {
+  content: unset;
+}
+footer__content-bottom {
+  padding-top: 1.5rem;
+}
+.footer__content-bottom-wrapper.page-width {
+  margin-top: -20px;
+}
+.footer__copyright {
+  margin-top: -4px !important;
+}
+.image-link {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: 3;
+}
+.card .card__inner .card__media {
+  z-index: 4 !important;
+}
+@media screen and (max-width: 768px) {
+  .footer__column.footer__localization.isolate {
+    display: block;
+  }
+  .localization-form:only-child .button,
+  .localization-form:only-child .localization-form__select {
+    margin: 0 !important;
+    flex-grow: 1;
+    width: 347px;
+  }
+  .footer__column.footer__localization.isolate {
+    padding: unset !important;
+  }
+  .product-form__input input[type=radio]+label {
+    padding: 9px 11px !important;
+    font-size: 11px !important;
+}
+}

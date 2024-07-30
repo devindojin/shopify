@@ -1,0 +1,167 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .modal {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background: #fff;
+    display: none;
+  }
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .tabs {
+    display: flex;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-bottom: 2px solid #ddd;
+  }
+  .tab {
+    margin-right: 20px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .tab.active {
+    border-bottom: 2px solid #000;
+  }
+  .content {
+    display: none;
+  }
+  .content.active {
+    display: block;
+  }
+  .size-options {
+    display: flex;
+    margin-top: 20px;
+  }
+  .size-option {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  .size-option input {
+    margin-right: 5px;
+  }
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  .table th {
+    background-color: #f2f2f2;
+  }
+  .image-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+<button id="open-modal-btn">Open Size Guide</button>
+<div class="modal" id="size-guide-modal">
+  <div class="modal-header">
+    <h1>Size Guide</h1>
+    <span id="close-modal-btn" style="cursor:pointer;">&times;</span>
+  </div>
+  <div class="tabs">
+    <div class="tab active" data-tab="body-measurements">Body Measurements</div>
+    <div class="tab" data-tab="size-conversions">Size Conversions</div>
+  </div>
+  <div class="content active" id="body-measurements">
+    <h2>How to Measure Your Body</h2>
+    <p>
+      <strong>Bust</strong><br>
+      With a bra on and your clothes off, measure around the fullest part of your bust and under the arms. Keep the tape
+      straight across your back and level to the floor.
+    </p>
+    <p>
+      <strong>Waist</strong><br>
+      While in a relaxed position, measure around your natural waist - the narrowest part of your waistline.
+    </p>
+    <p>
+      <strong>Hips</strong><br>
+      Stand with your legs and feet together and measure around the fullest part of your bottom, approximately 20 cm or
+      8 inches below your waistline.
+    </p>
+    <div class="size-options">
+      <label class="size-option"> <input type="radio" name="size-unit" value="inches" checked> Inches </label>
+      <label class="size-option"> <input type="radio" name="size-unit" value="centimeters"> Centimeters </label>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Bust</th>
+          <th>Waist</th>
+          <th>Hips</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-size-unit="inches">
+          <td>33 - 35</td>
+          <td>26 - 28</td>
+          <td>36 - 38</td>
+        </tr>
+        <tr data-size-unit="centimeters">
+          <td>84 - 89</td>
+          <td>66 - 71</td>
+          <td>91 - 97</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="image-container">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0047/1017/0739/files/Image_Fixed_Aspect_Ratio.png?v=1721098109"
+        alt="Size Guide Image"
+      >
+    </div>
+  </div>
+  <div class="content" id="size-conversions">
+    <h2>Size Conversions</h2>
+    <p>Size conversions content goes here.</p>
+  </div>
+</div>
+
+<script>
+    document.getElementById('open-modal-btn').addEventListener('click', function() {
+      document.getElementById('size-guide-modal').style.display = 'block';
+    });
+
+    document.getElementById('close-modal-btn').addEventListener('click', function() {
+      document.getElementById('size-guide-modal').style.display = 'none';
+    });
+
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('input[name="size-unit"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        document.querySelectorAll('.table tbody tr').forEach(row => {
+          row.style.display = 'none';
+        });
+        document.querySelector(`.table tbody tr[data-size-unit="${this.value}"]`).style.display = 'table-row';
+      });
+    });
+
+    document.querySelector('input[name="size-unit"]:checked').dispatchEvent(new Event('change'));
+</script>

@@ -1,0 +1,50 @@
+<style>
+  {% for block in section.blocks %}
+    .colour-swatch--{{block.settings.title | handle}} {
+      {% if block.settings.image %}
+        background-image: url({{block.settings.image | img_url: '20x20'}});
+          background-size: cover;
+      {% elsif block.settings.color %}
+        background-color:{{block.settings.color}};
+      {% else %}
+        background-color:{{block.settings.title}};
+      {% endif %}
+    }
+  {% endfor %}
+</style>
+
+{% schema %}
+{
+  "name": "Colour Swatches",
+  "settings": [],
+  "blocks":[
+    {
+      "name":"Swatch",
+      "type":"swatch",
+      "settings":[
+        {
+          "type":"text",
+          "id":"title",
+          "label":"Name"
+        },
+        {
+          "type":"color",
+          "id":"color",
+          "label":"Colour"
+        },
+        {
+          "type":"image_picker",
+          "id":"image",
+          "label":"Background Image Colour"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
